@@ -12,6 +12,13 @@ module.exports = {
       image_profile: {
         type: Sequelize.TEXT("LONG"),
       },
+      username: {
+        type: Sequelize.STRING,
+        unique: true,
+      },
+      password: {
+        type: Sequelize.STRING,
+      },
       firstname: {
         type: Sequelize.STRING,
       },
@@ -20,6 +27,7 @@ module.exports = {
       },
       email: {
         type: Sequelize.STRING,
+        unique: true,
       },
       age: {
         type: Sequelize.INTEGER,
@@ -29,6 +37,10 @@ module.exports = {
       },
       bio: {
         type: Sequelize.STRING,
+      },
+      is_verify: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
       },
       createdAt: {
         allowNull: false,

@@ -8,25 +8,27 @@ class Auth extends Entity {
     super(model);
   }
 
-  login(req, res) {
-    const { username, password } = req.body;
-  }
+  login(req, res) {}
 
   async register(req, res) {
     try {
-      const saltRounds = 10;
-
       //check username if already
-      const checkUsername = await db.Users.findAll({
-        where: { username: { [Op.like]: `%${req.body.username}%` } },
+      const checkUsername = await db.Users.findOne({
+        where: { username: req.body.username },
       });
-      if (checkUsername) {
+      //check email user can use one email for one user
+      const checkEmail = await db.Users.findOne({
+        where: { email: req.body.email },
+      });
+      //conditional
+      if (checkUsername?.username) {
         throw new Error("Username already exixt");
+      } else if (checkEmail?.email) {
+        throw new Error("Email already use");
       }
 
-      console.log(checkUsername, "ini username check");
+      const saltRounds = 10;
       const hashPassword = await bcrypt.hash(req.body.password, saltRounds);
-
       await db.Users.create({
         ...req.body,
         password: hashPassword,

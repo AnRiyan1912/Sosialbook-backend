@@ -34,14 +34,15 @@ module.exports = (sequelize, DataTypes) => {
   Users.init(
     {
       image_profile: DataTypes.TEXT("LONG"),
-      username: DataTypes.STRING,
+      username: { type: DataTypes.STRING, unique: true },
       password: DataTypes.STRING,
       firstname: DataTypes.STRING,
       lastname: DataTypes.STRING,
-      email: DataTypes.STRING,
+      email: { type: DataTypes.STRING, unique: true },
       age: DataTypes.INTEGER,
       date_of_birth: DataTypes.DATE,
       bio: DataTypes.STRING,
+      is_verify: { type: DataTypes.BOOLEAN, defaultValue: false },
     },
     {
       sequelize,
