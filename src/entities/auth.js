@@ -2,13 +2,33 @@ const bcrypt = require("bcrypt");
 const db = require("../sequelize/models");
 const Entity = require("./entity");
 const { Op } = require("sequelize");
+const jwt = require("jsonwebtoken");
 
 class Auth extends Entity {
   constructor(model) {
     super(model);
   }
 
-  login(req, res) {}
+  async login(req, res) {
+    const { username, email } = req.body;
+    try {
+      //check via username
+      const findUser = await db.Users.findOne({
+        where: {
+          [db.Sequelize.Op.or]: {
+            email: { [db.Sequelize.Op.like]: `%${email}` },
+            username: { [db.Sequelize.Op.like]: `%${username}%` },
+          },
+        },
+      });
+
+      if (findUser.dataValues) {
+        console.log(findUser.dataValues);
+      }
+    } catch (err) {
+      res.json({ status: 500, message: err?.message });
+    }
+  }
 
   async register(req, res) {
     try {

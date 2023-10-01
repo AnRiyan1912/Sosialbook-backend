@@ -31,7 +31,7 @@ class Entity {
   updateById(req, res) {
     db[this.model]
       .update({ ...req.body }, { where: { id: req.params.id } })
-      .then((result) => this.getById(req, res))
+      .then(() => this.getById(req, res))
       .catch((err) => res.status(500).send(err?.message));
   }
 }

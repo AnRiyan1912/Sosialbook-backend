@@ -43,6 +43,7 @@ module.exports = (sequelize, DataTypes) => {
       date_of_birth: DataTypes.DATE,
       bio: DataTypes.STRING,
       is_verify: { type: DataTypes.BOOLEAN, defaultValue: false },
+      is_attemp: { type: DataTypes.INTEGER, defaultValue: 0 },
     },
     {
       sequelize,
