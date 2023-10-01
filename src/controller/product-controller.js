@@ -1,3 +1,3 @@
 const Product = require("../entities/product");
-const ProductController = new Product("Products");
-module.exports = ProductController;
+const productController = new Product("Products");
+module.exports = productController;
