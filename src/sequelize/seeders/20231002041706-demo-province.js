@@ -1,5 +1,34 @@
 "use strict";
 
+const axios = require("axios");
+const { Provinces } = require("../models");
+
+const importProvinceFromApi = async () => {
+  try {
+    const api_key = "6865fc5581ba0addc3deceabdedecf50";
+    const response = await axios.get(
+      "https://api.rajaongkir.com/starter/province",
+      {
+        headers: {
+          key: api_key,
+        },
+      }
+    );
+
+    const province_data = response.data.rajaongkir.results;
+
+    for (const provinces of province_data) {
+      await Provinces.create({
+        province_name: provinces.province,
+      });
+    }
+
+    console.log("Success import data Provinces");
+  } catch (err) {
+    console.log("Failed import data provinces", err?.message);
+  }
+};
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -12,107 +41,8 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
-    await queryInterface.bulkInsert("Provinces", [
-      {
-        provinces_name: "Aceh",
-      },
-      {
-        provinces_name: "Bali",
-      },
-      {
-        provinces_name: "Bangka Belitung",
-      },
-      {
-        provinces_name: "Banten",
-      },
-      {
-        provinces_name: "Bengkulu",
-      },
-      {
-        provinces_name: "Daerah Istimewa Yogyakarta",
-      },
-      {
-        provinces_name: "Gorontalo",
-      },
-      {
-        provinces_name: "DKI Jakarta",
-      },
-      {
-        provinces_name: "Jambi",
-      },
-      {
-        provinces_name: "Jawa Barat",
-      },
-      {
-        provinces_name: "Jawa Tengah",
-      },
-      {
-        provinces_name: "Jawa Timur",
-      },
-      {
-        provinces_name: "Kalimantan Barat",
-      },
-      {
-        provinces_name: "Kalimantan Selatan",
-      },
-      {
-        provinces_name: "Kalimantan Tengah",
-      },
-      {
-        provinces_name: "Kalimantan Timur",
-      },
-      {
-        provinces_name: "Kalimantan Utara",
-      },
-      {
-        provinces_name: "Kepulauan Riau",
-      },
-      {
-        provinces_name: "Lampung",
-      },
-      {
-        provinces_name: "Maluku Utara",
-      },
-      {
-        provinces_name: "Maluku",
-      },
-      {
-        provinces_name: "Nusa Tenggara Barat",
-      },
-      {
-        provinces_name: "Nusa Tenggara Timur",
-      },
-      {
-        provinces_name: "Papua Barat",
-      },
-      {
-        provinces_name: "Papua",
-      },
-      {
-        provinces_name: "Riau",
-      },
-      {
-        provinces_name: "Sulawesi Selatan",
-      },
-      {
-        provinces_name: "Sulawesi Tengah",
-      },
-      {
-        provinces_name: "Sulawesi Tenggara",
-      },
-      {
-        provinces_name: "Sulawesi Utara",
-      },
-      {
-        provinces_name: "Sumatra Barat",
-      },
-      {
-        provinces_name: "Sumatra Selatan",
-      },
-      {
-        provinces_name: "Sumatra Utara",
-      },
-    ]);
+
+    await importProvinceFromApi();
   },
 
   async down(queryInterface, Sequelize) {
