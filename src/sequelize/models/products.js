@@ -15,14 +15,34 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "category_id",
         as: "productcategories",
       });
+
+      Products.belongsTo(models.City, {
+        foreignKey: "city_name",
+        as: "cities",
+      });
+
+      Products.belongsTo(models.Provinces, {
+        foreignKey: "province_id",
+        as: "provinces",
+      });
+
+      Products.belongsTo(models.ProductTypes, {
+        foreignKey: "type_id",
+        as: "producttypes",
+      });
     }
   }
   Products.init(
     {
       image_product: DataTypes.TEXT("LONG"),
       product_name: DataTypes.STRING,
+      price: DataTypes.INTEGER,
+      description: DataTypes.STRING,
+      type_id: DataTypes.INTEGER,
       category_id: DataTypes.INTEGER,
       user_id: DataTypes.INTEGER,
+      city_id: DataTypes.INTEGER,
+      province_id: DataTypes.INTEGER,
     },
     {
       sequelize,
