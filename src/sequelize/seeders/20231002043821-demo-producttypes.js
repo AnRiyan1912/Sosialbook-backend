@@ -15,12 +15,18 @@ module.exports = {
     await queryInterface.bulkInsert("ProductTypes", [
       {
         type_name: "goods for sale",
+        updatedAt: new Date(),
+        createdAt: new Date(),
       },
       {
         type_name: "vihicle for sale",
+        updatedAt: new Date(),
+        createdAt: new Date(),
       },
       {
         type_name: "house for sale",
+        updatedAt: new Date(),
+        createdAt: new Date(),
       },
     ]);
   },

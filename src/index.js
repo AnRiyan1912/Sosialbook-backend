@@ -14,6 +14,10 @@ app.get("/", (req, res) => {
 });
 
 app.use("/auth", routers.authRoutes);
+app.use("/product", routers.productRoutes)
+app.use("/province", routers.provinceRoutes)
+app.use("/city", routers.cityRoutes);
+
 
 app.listen(PORT, () => {
   console.log(`Your server running at port ${PORT}`);

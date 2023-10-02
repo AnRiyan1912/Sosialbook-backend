@@ -10,8 +10,8 @@ const {
 module.exports = {
   development: {
     username: "root",
-    password: "password",
-    database: "Sosialbook",
+    password: "truecuks",
+    database: "sosialbook",
     host: "localhost",
     dialect: "mysql",
   },
