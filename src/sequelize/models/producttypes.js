@@ -13,6 +13,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "type_id",
         as: "products",
       });
+
+      ProductTypes.hasMany(models.ProductCategories, {
+        foreignKey: "type_id",
+        as: "productcategories",
+      });
     }
   }
   ProductTypes.init(

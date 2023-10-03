@@ -1,5 +1,5 @@
-const { City } = require("../sequelize/models");
+const City = require("../entities/city");
 
-const cityController = new City("City")
+const cityController = new City("City");
 
-module.exports = cityController
+module.exports = cityController;

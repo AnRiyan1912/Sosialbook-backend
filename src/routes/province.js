@@ -1,4 +1,12 @@
-const express = require("express")
-const route = express.Router()
+const express = require("express");
+const provinceController = require("../controller/province-controller");
+const route = express.Router();
 
-module.exports = route
+route.get("/", provinceController.getAll.bind(provinceController));
+route.get(
+  "/withcity",
+  provinceController.getProvinceWithCity.bind(provinceController)
+);
+route.get("/:id", provinceController.getById.bind(provinceController));
+
+module.exports = route;

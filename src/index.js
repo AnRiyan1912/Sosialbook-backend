@@ -14,10 +14,17 @@ app.get("/", (req, res) => {
 });
 
 app.use("/auth", routers.authRoutes);
-app.use("/product", routers.productRoutes)
-app.use("/province", routers.provinceRoutes)
+app.use("/product", routers.productRoutes);
+app.use("/province", routers.provinceRoutes);
 app.use("/city", routers.cityRoutes);
+app.use("/producttype", routers.productTypeRoutes);
+app.use("/productcategory", routers.productCategoryRoutes);
 
+app.use("/public/posts", express.static(`${__dirname}/public/imgaes/posts`));
+app.use(
+  "/public/products",
+  express.static(`${__dirname}/public/images/products`)
+);
 
 app.listen(PORT, () => {
   console.log(`Your server running at port ${PORT}`);

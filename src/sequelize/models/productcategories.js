@@ -13,11 +13,17 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "category_id",
         as: "products",
       });
+
+      ProductCategories.belongsTo(models.ProductTypes, {
+        foreignKey: "type_id",
+        as: "producttypes",
+      });
     }
   }
   ProductCategories.init(
     {
       category_name: DataTypes.STRING,
+      type_id: DataTypes.INTEGER,
     },
     {
       sequelize,

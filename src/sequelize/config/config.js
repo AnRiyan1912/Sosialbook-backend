@@ -10,7 +10,7 @@ const {
 module.exports = {
   development: {
     username: "root",
-    password: "truecuks",
+    password: "password",
     database: "sosialbook",
     host: "localhost",
     dialect: "mysql",
