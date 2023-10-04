@@ -19,6 +19,10 @@ app.use("/province", routers.provinceRoutes);
 app.use("/city", routers.cityRoutes);
 app.use("/producttype", routers.productTypeRoutes);
 app.use("/productcategory", routers.productCategoryRoutes);
+app.use("/post", routers.postRoutes);
+app.use("/postlike", routers.postLikeRoutes);
+app.use("/comment", routers.commentRoutes);
+app.use("/message", routers.messageRoutes);
 
 app.use("/public/posts", express.static(`${__dirname}/public/imgaes/posts`));
 app.use(

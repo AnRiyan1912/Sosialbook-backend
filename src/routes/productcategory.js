@@ -7,6 +7,12 @@ route.get(
   productCategoryController.getAll.bind(productCategoryController)
 );
 route.get(
+  "/byproducttype",
+  productCategoryController.getProdutcCategoryByProductType.bind(
+    productCategoryController
+  )
+);
+route.get(
   "/:id",
   productCategoryController.getById.bind(productCategoryController)
 );

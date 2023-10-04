@@ -4,6 +4,11 @@ const provinceRoutes = require("./province");
 const cityRoutes = require("./city");
 const productTypeRoutes = require("./producttype");
 const productCategoryRoutes = require("./productcategory");
+const postRoutes = require("./post");
+const postLikeRoutes = require("./postlike");
+const commentRoutes = require("./comment");
+const messageRoutes = require("./message");
+
 const routers = {
   authRoutes,
   productRoutes,
@@ -11,6 +16,10 @@ const routers = {
   cityRoutes,
   productTypeRoutes,
   productCategoryRoutes,
+  postRoutes,
+  postLikeRoutes,
+  commentRoutes,
+  messageRoutes,
 };
 
 module.exports = routers;

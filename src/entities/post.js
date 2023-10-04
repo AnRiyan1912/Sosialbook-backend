@@ -1,9 +1,9 @@
 const Entity = require("./entity");
 
-class Product extends Entity {
+class Post extends Entity {
   constructor(model) {
     super(model);
   }
 }
 
-module.exports = Product;
+module.exports = Post;
