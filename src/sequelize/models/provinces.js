@@ -18,6 +18,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "province_id",
         as: "cities",
       });
+
+      Provinces.hasMany(models.Posts, {
+        foreignKey: "province_id",
+        as: "posts",
+      });
     }
   }
   Provinces.init(
