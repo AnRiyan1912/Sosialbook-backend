@@ -25,7 +25,9 @@ class Auth extends Entity {
           id: result.dataValues.id,
           is_verify: result.dataValues.is_verify,
         };
-        const token = jwt.sign(payload, process.env.jwt_secret);
+        const token = jwt.sign(payload, process.env.jwt_secret, {
+          expiresIn: "1h",
+        });
         delete result.dataValues.password;
         res.json({ status: 200, token: token, user: result });
       });

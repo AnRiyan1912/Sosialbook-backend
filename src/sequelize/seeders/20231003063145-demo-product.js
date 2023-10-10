@@ -41,7 +41,7 @@ module.exports = {
         updatedAt: new Date(),
         createdAt: new Date(),
       },
-      {
+      { 
         image_product:
           "https://www.blibli.com/friends-backend/wp-content/uploads/2021/12/air-jordan.jpeg",
         product_name: "Sepatu Air Jordan",
