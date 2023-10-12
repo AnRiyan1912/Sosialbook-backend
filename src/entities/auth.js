@@ -65,6 +65,37 @@ class Auth extends Entity {
       res.json({ status: 500, message: err?.message });
     }
   }
+
+  async keepLogin(req, res) {
+    try {
+      const { token } = req.query;
+      console.log(token, "Ini token");
+      const data = await jwt.verify(token, process.env.jwt_secret);
+      console.log(data);
+      if (!data.id) throw new Error("invalid token");
+
+      console.log(data);
+
+      const payload = await db.Users.findOne({
+        where: {
+          id: data.id,
+        },
+      });
+      delete payload.dataValues.password;
+
+      const newToken = jwt.sign(
+        { id: data.id, is_verified: payload.dataValues.is_verified },
+        process.env.jwt_secret,
+        {
+          expiresIn: "1h",
+        }
+      );
+
+      return res.send({ token: newToken, user: payload });
+    } catch (err) {
+      res.status(500).send(err?.message);
+    }
+  }
 }
 
 module.exports = Auth;

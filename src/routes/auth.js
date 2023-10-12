@@ -4,6 +4,8 @@ const checkUserandPassword = require("../middlewares/auth");
 const route = express.Router();
 
 route.get("/", authController.getAll.bind(authController));
+route.get("/token", authController.keepLogin.bind(authController)); //keeplogin
+
 route.post(
   "/login",
   checkUserandPassword,

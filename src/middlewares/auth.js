@@ -4,7 +4,7 @@ const checkUserandPassword = async (req, res, next) => {
   try {
     const { user, password } = req.body;
     if (!user || !password) {
-      throw new Error("Username or E mail and Password can't be empty!");
+      throw new Error("Username or Email and Password can't be empty!");
     }
 
     await db.Users.findOne({
