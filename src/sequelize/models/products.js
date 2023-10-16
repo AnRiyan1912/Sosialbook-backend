@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       });
 
       Products.belongsTo(models.City, {
-        foreignKey: "city_name",
+        foreignKey: "city_id",
         as: "cities",
       });
 
