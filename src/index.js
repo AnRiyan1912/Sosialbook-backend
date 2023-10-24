@@ -12,7 +12,7 @@ app.use(cors());
 app.get("/", (req, res) => {
   res.send("Welcome to my api");
 });
-
+app.use(express.urlencoded({ extended: false }));
 app.use("/auth", routers.authRoutes);
 app.use("/product", routers.productRoutes);
 app.use("/province", routers.provinceRoutes);
@@ -23,12 +23,14 @@ app.use("/post", routers.postRoutes);
 app.use("/postlike", routers.postLikeRoutes);
 app.use("/comment", routers.commentRoutes);
 app.use("/message", routers.messageRoutes);
+app.use("/imagepost", routers.imagePostRoutes);
 
-app.use("/public/posts", express.static(`${__dirname}/public/imgaes/posts`));
+app.use("/public/posts", express.static(`${__dirname}/public/images/posts`));
 app.use(
   "/public/products",
   express.static(`${__dirname}/public/images/products`)
 );
+app.use("public/users", express.static(`${__dirname}/publick/images/users`));
 
 app.listen(PORT, () => {
   console.log(`Your server running at port ${PORT}`);

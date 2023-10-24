@@ -33,11 +33,15 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "post_id",
         as: "comments",
       });
+
+      Posts.hasMany(models.ImagePost, {
+        foreignKey: "post_id",
+        as: "imageposts",
+      });
     }
   }
   Posts.init(
     {
-      image_post: DataTypes.TEXT("LONG"),
       caption: DataTypes.STRING,
       user_id: DataTypes.INTEGER,
       province_id: DataTypes.INTEGER,

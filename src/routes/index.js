@@ -8,6 +8,7 @@ const postRoutes = require("./post");
 const postLikeRoutes = require("./postlike");
 const commentRoutes = require("./comment");
 const messageRoutes = require("./message");
+const imagePostRoutes = require("./imagepost");
 
 const routers = {
   authRoutes,
@@ -20,6 +21,7 @@ const routers = {
   postLikeRoutes,
   commentRoutes,
   messageRoutes,
+  imagePostRoutes,
 };
 
 module.exports = routers;

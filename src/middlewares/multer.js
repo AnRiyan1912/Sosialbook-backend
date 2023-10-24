@@ -27,7 +27,38 @@ const fileUploader = ({
       }
       return cb(null, true);
     },
-    limits: 100000,
+    limits: 10000000,
+  });
+  return uploader;
+};
+
+const fileVideoUploader = ({
+  destinationFolder = "",
+  prefix = "",
+  fileType = "",
+}) => {
+  const storageConfig = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, `${__dirname}/../public/videos/${destinationFolder}`);
+    },
+    filename: (req, file, cb) => {
+      const fileExtention = file.mimetype.split("/")[1];
+      const filename = `${prefix}_${moment().format(
+        "YYYY-MM-DD-HH-mm-ss"
+      )}.${fileExtention}`;
+      console.log(filename);
+      cb(null, filename);
+    },
+  });
+  const uploader = multer({
+    storage: storageConfig,
+    fileFilter: (req, file, cb) => {
+      if (file.mimetype.split("/")[0] != fileType) {
+        return cb(null, false);
+      }
+      return cb(null, true);
+    },
+    limits: 10000000,
   });
   return uploader;
 };
@@ -45,4 +76,4 @@ const blopUploader = ({ fileType }) => {
   });
 };
 
-module.exports = { fileUploader, blopUploader };
+module.exports = { fileUploader, blopUploader, fileVideoUploader };

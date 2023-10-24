@@ -57,6 +57,7 @@ db.Comments = require("./comments")(sequelize, Sequelize);
 db.City = require("./city")(sequelize, Sequelize);
 db.Provinces = require("./provinces")(sequelize, Sequelize);
 db.ProductTypes = require("./producttypes")(sequelize, Sequelize);
+db.ImagePost = require("./imagepost")(sequelize, Sequelize);
 
 db.Users.associate(db);
 db.Products.associate(db);
@@ -68,5 +69,6 @@ db.Comments.associate(db);
 db.City.associate(db);
 db.Provinces.associate(db);
 db.ProductTypes.associate(db);
+db.ImagePost.associate(db);
 
 module.exports = db;

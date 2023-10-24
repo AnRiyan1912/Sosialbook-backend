@@ -14,8 +14,6 @@ module.exports = {
      */
     await queryInterface.bulkInsert("Users", [
       {
-        image_profile:
-          "https://flazztax.com/wp-content/uploads/2022/02/Ketahui-Wajib-Pajak-Orang-Pribadi-dan-Kewajibannya-1200x675.jpg",
         username: "andre",
         password:
           "$2b$10$w2l1WGrsZc5iuWkiT56GluGLSmh1ffG2Blqt7ngKUby69sEKxCXgS",
@@ -29,8 +27,6 @@ module.exports = {
         createdAt: new Date(),
       },
       {
-        image_profile:
-          "https://flazztax.com/wp-content/uploads/2022/02/Ketahui-Wajib-Pajak-Orang-Pribadi-dan-Kewajibannya-1200x675.jpg",
         username: "jamal",
         password:
           "$2b$10$UhxafI1yUrOV97NuSeLOxOV9nMYYPORctomo/7GUzR2P4cNlzaqUi",
@@ -44,8 +40,6 @@ module.exports = {
         createdAt: new Date(),
       },
       {
-        image_profile:
-          "https://cdn1-production-images-kly.akamaized.net/SyRFEsgZ-JJ1P2VoWven4KIp9H8=/1200x900/smart/filters:quality(75):strip_icc():format(webp)/kly-media-production/medias/3220607/original/002220400_1598510794-9b3ee95069a9d94d80dfcdba43.jpg",
         username: "aulia",
         password:
           "$2b$10$bNMhE.OiJZr7K9ENuJoTbeoZF8iTjot/2IzkYjBcZNdY2HuTR.0I6",

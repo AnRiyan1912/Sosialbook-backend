@@ -7,7 +7,12 @@ class Post extends Entity {
   }
   async getAllPostWithUser(req, res) {
     try {
-      await db.Posts.findAll({ include: [{ model: db.Users, as: "users" }] })
+      await db.Posts.findAll({
+        include: [
+          { model: db.Users, as: "users" },
+          { model: db.ImagePost, as: "imageposts" },
+        ],
+      })
         .then((result) => res.json({ status: 200, posts: result }))
         .catch((err) => res.json({ status: 500, message: err?.message }));
     } catch (err) {
