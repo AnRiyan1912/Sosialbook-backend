@@ -3,6 +3,7 @@ const db = require("../sequelize/models");
 const Entity = require("./entity");
 const { Op } = require("sequelize");
 const jwt = require("jsonwebtoken");
+const sharp = require("sharp");
 require("dotenv").config();
 
 class Auth extends Entity {
@@ -29,7 +30,8 @@ class Auth extends Entity {
           expiresIn: "1h",
         });
         delete result.dataValues.password;
-        res.json({ status: 200, token: token, user: result });
+
+        res.send({ status: 200, token: token, user: result });
       });
     } catch (err) {
       res.json({ status: 500, message: err?.message });
@@ -94,6 +96,34 @@ class Auth extends Entity {
       return res.send({ token: newToken, user: payload });
     } catch (err) {
       res.status(500).send(err?.message);
+    }
+  }
+
+  async editUser(req, res) {
+    try {
+      if (req?.file) {
+        req.body.image_blob = await sharp(req.file.buffer)
+          .png()
+          .resize({ width: 100, height: 100 })
+          .toBuffer();
+        req.body.image = req.file.originalname;
+        await this.updateById(req, res);
+      }
+    } catch (err) {
+      res.json({ status: 500, message: err?.message });
+    }
+  }
+
+  async renderImageUser(req, res) {
+    try {
+      await db.Users.findOne({ where: { id: req.params.id } }).then(
+        (result) => {
+          res.set("Content-type", "image/png");
+          res.send(result.image_blob);
+        }
+      );
+    } catch (err) {
+      res.json({ status: 500, message: err?.message });
     }
   }
 }

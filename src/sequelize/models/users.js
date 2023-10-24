@@ -34,6 +34,7 @@ module.exports = (sequelize, DataTypes) => {
   Users.init(
     {
       image: { type: DataTypes.STRING },
+      image_blob: { type: DataTypes.BLOB },
       username: { type: DataTypes.STRING, unique: true },
       password: DataTypes.STRING,
       firstname: DataTypes.STRING,
@@ -44,7 +45,6 @@ module.exports = (sequelize, DataTypes) => {
       bio: DataTypes.STRING,
       is_verify: { type: DataTypes.BOOLEAN, defaultValue: false },
       is_attemp: { type: DataTypes.INTEGER, defaultValue: 0 },
-      image_user_id: DataTypes.INTEGER,
     },
     {
       sequelize,
